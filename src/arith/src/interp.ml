@@ -24,6 +24,9 @@ let rec eval_expr : expr -> int result =
     if m=0
     then error "Division by zero"
     else return (n/m)
+  | Abs(e1) ->
+    eval_expr e1 >>= fun n ->
+    return (Int.abs n)
   | _ -> failwith "Not implemented yet!"
 
 
